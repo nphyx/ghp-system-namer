@@ -35,15 +35,6 @@ function updateTag() {
 
 		if(resources) secondaryFeatures.push(resources);
 
-		// compose selected ships
-		let ships = 
-			Array.prototype.slice.apply(document.querySelectorAll("#ships input"))
-			.filter((el) => el.checked)
-			.map((el) => el.value)
-			.join(",");
-
-		if(ships) secondaryFeatures.push(ships);
-
 		// compose selected attractions
 		let attractions = 
 			Array.prototype.slice.apply(document.querySelectorAll("#attractions input"))
@@ -53,7 +44,14 @@ function updateTag() {
 
 		if(attractions) secondaryFeatures.push(attractions);
 
+		// compose selected ships
+		let ships = 
+			Array.prototype.slice.apply(document.querySelectorAll("#ships input"))
+			.filter((el) => el.checked)
+			.map((el) => el.value)
+			.join(",");
 
+		if(ships) secondaryFeatures.push(ships);
 
 		// cleanup
 		if(primaryFeatures) primaryFeatures = "-"+primaryFeatures;

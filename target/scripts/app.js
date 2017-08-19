@@ -36,15 +36,6 @@ function updateTag() {
 
 	if (resources) secondaryFeatures.push(resources);
 
-	// compose selected ships
-	var ships = Array.prototype.slice.apply(document.querySelectorAll("#ships input")).filter(function (el) {
-		return el.checked;
-	}).map(function (el) {
-		return el.value;
-	}).join(",");
-
-	if (ships) secondaryFeatures.push(ships);
-
 	// compose selected attractions
 	var attractions = Array.prototype.slice.apply(document.querySelectorAll("#attractions input")).filter(function (el) {
 		return el.checked;
@@ -53,6 +44,15 @@ function updateTag() {
 	}).join("");
 
 	if (attractions) secondaryFeatures.push(attractions);
+
+	// compose selected ships
+	var ships = Array.prototype.slice.apply(document.querySelectorAll("#ships input")).filter(function (el) {
+		return el.checked;
+	}).map(function (el) {
+		return el.value;
+	}).join(",");
+
+	if (ships) secondaryFeatures.push(ships);
 
 	// cleanup
 	if (primaryFeatures) primaryFeatures = "-" + primaryFeatures;
