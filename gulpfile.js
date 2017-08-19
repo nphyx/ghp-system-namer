@@ -6,6 +6,7 @@ var sass = require("gulp-sass");
 var webpack = require("webpack");
 var del = require("del");
 var path = require("path");
+var exec = require("child_process").exec;
 /*
 var babelRegister = require("babel-core/register");
 var exec = require("child_process").exec;
@@ -63,6 +64,14 @@ gulp.task("webpack", ["scripts", "markup", "styles"], function(callback) {
 	webpack(webpackConfig, function(err, stats) {
 		if(err) console.log(err);
 		callback();
+	});
+});
+
+gulp.task("deploy", ["webpack"], function(cb) {
+	exec("git subtree push --prefix dist hub gh-pages", function(err, stdout, stderr) {
+		console.log(stdout);
+		console.log(stderr);
+		cb(err);
 	});
 });
 
