@@ -1,7 +1,7 @@
 {
-  "name": "@nphyx/ghp-system-name",
+  "name": "@nphyx/ghp-system-namer",
   "version": "0.0.1",
-  "repository": "https://github.com/nphyx/ghp-system-name",
+  "repository": "https://github.com/nphyx/ghp-system-namer",
   "description": "A system name generator for the No Man's Sky Galactic Hub Project.",
   "author": "Justen Robertson <nphyxx@gmail.com>",
   "main": "",
