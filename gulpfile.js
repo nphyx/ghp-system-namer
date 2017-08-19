@@ -15,7 +15,7 @@ var istanbul = require("gulp-babel-istanbul");
 
 const webpackConfig = {
 	entry:path.resolve(__dirname, "target/scripts/app.js"),
-	//devtool:"source-map",
+	devtool:"source-map",
 	output:{
 		filename:"app.js",
 		path:path.resolve(__dirname, "dist/scripts")
@@ -58,6 +58,8 @@ gulp.task("styles", ["clean:styles"], function() {
 
 /* jshint unused:false */
 gulp.task("webpack", ["scripts", "markup", "styles"], function(callback) {
+	gulp.src("src/assets/*")
+		.pipe(gulp.dest("dist/assets/"));
 	webpack(webpackConfig, function(err, stats) {
 		if(err) console.log(err);
 		callback();

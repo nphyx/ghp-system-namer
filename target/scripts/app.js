@@ -1,10 +1,41 @@
 "use strict";
-/* global jQuery */
 
-jQuery(function ($) {
-	$("form").on("change keyup", updateTag);
+var bgSrc = "assets/background-" + (~~(Math.random() * 4) + 1) + ".jpg";
+//let atlasSrc = "assets/atlas.png";
+var loaded = 1;
+window.addEventListener("load", function () {
+	var form = document.getElementsByTagName("form")[0];
+	form.addEventListener("change", updateTag);
+	form.addEventListener("keyup", updateTag);
 	updateTag();
+	pinTag();
+
+	var imgLoadCb = function imgLoadCb() {
+		loaded--;
+		if (loaded === 0) setBackground();
+	};
+	var bgImg = document.createElement("img");
+	bgImg.src = bgSrc;
+	bgImg.addEventListener("load", imgLoadCb);
+	/*
+ let atlasImg = document.createElement("img");
+ atlasImg.src = atlasSrc;
+ atlasImg.addEventListener("load", imgLoadCb);
+ */
+
+	window.addEventListener("scroll", pinTag);
 });
+
+function pinTag() {
+	var tag = document.getElementById("generated-tag");
+	var box = document.getElementById("tag-container");
+	var bounds = box.getBoundingClientRect();
+	if (bounds.top < 0) tag.classList.add("sticky");else tag.classList.remove("sticky");
+}
+
+function setBackground() {
+	document.getElementsByTagName("body")[0].style.backgroundImage = "\n\t\turl(\"" + bgSrc + "\"),\n\t\tlinear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 30%)\n\t";
+}
 
 function updateTag() {
 	// extract region ID
@@ -13,14 +44,14 @@ function updateTag() {
 	})[0].value;
 
 	// extract primary features
-	var primaryFeatures = Array.prototype.slice.apply(document.querySelectorAll("#primary-features input")).filter(function (el) {
+	var primaryFeatures = Array.prototype.slice.apply(document.querySelectorAll("input.primary")).filter(function (el) {
 		return el.checked;
 	}).map(function (el) {
 		return el.value;
 	}).join("");
 
 	// trim leading zeroes (or placeholder)
-	var address = document.querySelector("input#address").value.replace(/^[0]+/g, "").toUpperCase() || "XXXX";
+	var address = document.querySelector("input#index").value.replace(/^[0]+/g, "").toUpperCase() || "XXXX";
 
 	// name (or placeholder)
 	var name = document.querySelector("input#name").value || "Un-Named System";

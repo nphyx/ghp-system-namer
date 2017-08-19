@@ -1,0 +1,212 @@
+@font-face {
+  font-family: 'Geo-NMS';
+  src: url("../assets/geonms-font.eot");
+  src: url("../assets/geonms-font.eot?#iefix") format("embedded-opentype"), url("../assets/geonms-font.svg#my-font-family") format("svg"), url("../assets/geonms-font.woff") format("woff"), url("../assets/geonms-font.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+html {
+  font-size: 16px; }
+
+body {
+  font-size: 1em;
+  color: white;
+  font-family: Roboto, sans-serif;
+  max-width: 60em;
+  margin: 0 auto;
+  background-attachment: fixed;
+  background-color: #222222;
+  background-size: cover, 100%;
+  background-position: center center, center center;
+  background-repeat: no-repeat, no-repeat; }
+
+h1, h2, h3, h4 {
+  font-family: Geo-NMS;
+  text-transform: uppercase;
+  letter-spacing: .2em; }
+
+h1 {
+  font-size: 2.5em; }
+
+h2 {
+  font-size: 2em; }
+
+h3 {
+  font-size: 1.5em; }
+
+h4 {
+  font-size: 0.9em; }
+
+input {
+  border: 0 none;
+  background: transparent;
+  outline: 0 none; }
+
+input[type=checkbox] {
+  visibility: hidden;
+  position: absolute; }
+
+header, section {
+  width: calc(100% - 6em);
+  margin: 1em 2em;
+  padding: 1em; }
+
+header {
+  display: grid;
+  grid-template-columns: 10em 1fr;
+  grid-auto-rows: auto; }
+  header img {
+    width: 10em;
+    grid-row: span 2; }
+  header h1 {
+    align-self: flex-end;
+    margin-left: 3rem; }
+  header p {
+    align-self: flex-start;
+    margin-left: 3rem; }
+
+h2#generated-tag {
+  text-transform: none;
+  background: transparent; }
+  h2#generated-tag.sticky {
+    position: fixed;
+    top: 0;
+    background: #444444;
+    width: calc(100% - 2em);
+    padding: 1em;
+    margin: 0 -1em;
+    transition: background 0.2s ease-in;
+    z-index: 1000; }
+
+section {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: auto;
+  grid-gap: .5em;
+  background: rgba(16, 16, 16, 0.3);
+  background: linear-gradient(180deg, rgba(16, 16, 16, 0.9), rgba(16, 16, 16, 0.6)); }
+  section h1, section h2, section h3, section h4 {
+    grid-column: span 6; }
+  section hr {
+    height: 2px;
+    width: 100%;
+    grid-column: span 6;
+    border: 0 none;
+    background: linear-gradient(90deg, white 0%, transparent 100%); }
+  section input[type=text] {
+    font-size: 1rem;
+    border-bottom: 2px solid white;
+    padding: .5em;
+    color: white;
+    margin-right: 1em;
+    align-self: flex-start; }
+  section input[type=text]::placeholder {
+    color: rgba(255, 255, 255, 0.3); }
+  section label {
+    text-align: right;
+    align-self: flex-end;
+    padding: .5em; }
+  section .group {
+    position: relative;
+    grid-column: span 2;
+    border-radius: 2em; }
+    section .group label {
+      display: block;
+      padding: .5em;
+      text-align: center;
+      border: 2px solid white;
+      border-radius: 2em;
+      background: rgba(16, 16, 128, 0.3); }
+    section .group input:checked + label {
+      font-weight: bold;
+      background: rgba(16, 16, 128, 0.6); }
+
+@media screen and (max-width: 800px) {
+  section {
+    grid-template-columns: repeat(4, 1fr); }
+    section h1, section h2, section h3, section h4, section hr {
+      grid-column: span 4; }
+    section label {
+      grid-column: span 1; }
+    section input, section select {
+      grid-column: span 3; }
+    section .group {
+      grid-column: span 2; } }
+
+@media screen and (max-width: 700px) {
+  h1 {
+    font-size: 2em; }
+  h2 {
+    font-size: 1.6em; }
+  h2#generated-tag, h3 {
+    font-size: 1.3em; }
+  h2#generated-tag.sticky {
+    width: calc(100% - 1em); }
+  header, section {
+    width: calc(100% - 4em);
+    margin: 1em 1em;
+    padding: 1em; }
+  header {
+    grid-template-columns: 1fr;
+    text-align: center; }
+    header img {
+      margin: 0 auto;
+      grid-row: span 1;
+      width: 40%; }
+    header h1, header p {
+      margin: .1em 0; }
+  section {
+    grid-template-columns: 1fr; }
+    section h1, section h2, section h3, section h4, section hr, section label, section input, section select, section .group {
+      grid-column: span 1; }
+    section label {
+      text-align: left; }
+    section input[type=text] {
+      margin-left: 1em; } }

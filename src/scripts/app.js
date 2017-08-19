@@ -1,9 +1,44 @@
 "use strict";
-/* global jQuery */
-jQuery(function($) {
-	$("form").on("change keyup", updateTag);
+let bgSrc = "assets/background-"+(~~(Math.random()*4)+1)+".jpg";
+//let atlasSrc = "assets/atlas.png";
+let loaded = 1;
+window.addEventListener("load", function() {
+	let form = document.getElementsByTagName("form")[0];
+	form.addEventListener("change", updateTag);
+	form.addEventListener("keyup", updateTag);
 	updateTag();
+	pinTag();
+
+	let imgLoadCb = () => {
+		loaded--;
+		if(loaded === 0) setBackground();
+	}
+	let bgImg = document.createElement("img");
+	bgImg.src = bgSrc;
+	bgImg.addEventListener("load", imgLoadCb);
+	/*
+	let atlasImg = document.createElement("img");
+	atlasImg.src = atlasSrc;
+	atlasImg.addEventListener("load", imgLoadCb);
+	*/
+
+	window.addEventListener("scroll", pinTag);
 });
+
+function pinTag() {
+	let tag = document.getElementById("generated-tag");
+	let box = document.getElementById("tag-container");
+	let bounds = box.getBoundingClientRect();
+	if(bounds.top < 0) tag.classList.add("sticky");
+	else tag.classList.remove("sticky");
+}
+
+function setBackground() {
+	document.getElementsByTagName("body")[0].style.backgroundImage = `
+		url("${bgSrc}"),
+		linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 30%)
+	`;
+}
 
 function updateTag() {
 		// extract region ID
@@ -13,13 +48,13 @@ function updateTag() {
 
 		// extract primary features
 		let primaryFeatures = 
-			Array.prototype.slice.apply(document.querySelectorAll("#primary-features input"))
+			Array.prototype.slice.apply(document.querySelectorAll("input.primary"))
 			.filter((el) => el.checked)
 			.map((el) => el.value)
 			.join("");
 
 		// trim leading zeroes (or placeholder)
-		let address = document.querySelector("input#address").value.replace(/^[0]+/g, "").toUpperCase() || "XXXX";
+		let address = document.querySelector("input#index").value.replace(/^[0]+/g, "").toUpperCase() || "XXXX";
 		
 		// name (or placeholder)
 		let name = document.querySelector("input#name").value || "Un-Named System";

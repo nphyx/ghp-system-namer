@@ -2,96 +2,96 @@ doctype html
 html
   head
     title Galactic Hub Project | System Tag Generator
-    link(href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet")
-    script(src="https://code.jquery.com/jquery-3.2.1.slim.min.js" type="text/javascript")
-    script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" type="text/javascript")
-    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" type="text/javascript")
+    //- 
+      link(href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet")
+      script(src="https://code.jquery.com/jquery-3.2.1.slim.min.js" type="text/javascript")
+      script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" type="text/javascript")
+      script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" type="text/javascript")
+    link(href="styles/style.css" rel="stylesheet")
     script(src="scripts/app.js" type="text/javascript")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
   body
-    section.container
+    header
+      img(src="https://nomanssky.gamepedia.com/media/nomanssky.gamepedia.com/7/75/Galactic_Hub_Emblem.png?version=98ce4d8b0a1a3cd636e53d0510871fc6")
       h1 System Tag Generator
       p Easily generate Galactic Hub compatible system tags.
-      p#generated-tag.alert.alert-primary.lead
-      form
-        div.form-row
-          div.form-group.col-lg-2.col-md-4
-            label.col-form-label(for=region) Region
-            select#region.form-control.custom-select
-              option(value=1 selected) Region 1
-              option(value=2) Region 2
-              option(value=3) Region 3
-              option(value=4) Region 4
-              option(value=5) Region 5
-              option(value=6) Region 6
-              option(value=7) Region 7
-              option(value=8) Region 8
-              option(value=9) Region 9
-              option(value=10) Region 10
-              option(value=11) Region 11
-          div.form-group.col-lg-5.col-md-8
-            p.col-form-label Primary Features
-            div#primary-features.btn-group(data-toggle="buttons")
-              label.btn.btn-primary
-                input(type="checkbox" autocomplete="off" value="$")
-                | Wealthy
-              label.btn.btn-primary
-                input(type="checkbox" autocomplete="off" value="!")
-                | High Conflict
-              label.btn.btn-primary
-                input(type="checkbox" autocomplete="off" value="X")
-                | Exotic Planets
-          div.form-group.col-lg-1.col-md-4
-            label.col-form-label(for=address) Index
-            input#address.form-control(type=text placeholder="012A")
-          div.form-group.col-lg-4.col-md-8
-            label.col-form-label(for=name) Name
-            input#name.form-control(type=text)
-        h2.mt-1 Notable Resources
-        div.form-group#resources
-            div.btn-group.mr-1.mt-1(data-toggle="buttons")
-              label.btn.btn-primary
-                input(type="checkbox" autocomplete="off" value="Aq") 
-                | Aquaspheres
-              label.btn.btn-primary
-                input(type="checkbox" autocomplete="off" value="AP") 
-                | Albumen Pearls
-              label.btn.btn-primary
-                input(type="checkbox" autocomplete="off" value="VC") 
-                | Vortex Cubes
-              label.btn.btn-primary
-                input(type="checkbox" autocomplete="off" value="GB") 
-                | Gravitino Balls
-            div.btn-group.mt-1(data-toggle="buttons")
-              label.btn.btn-primary
-                input(type="checkbox" autocomplete="off" value="Ra") 
-                | Radnox
-              label.btn.btn-primary
-                input(type="checkbox" autocomplete="off" value="Mu") 
-                | Murrine 
-              label.btn.btn-primary
-                input(type="checkbox" autocomplete="off" value="Om") 
-                | Omegon 
-        h2.mt-1 Attractions
-        div.form-group#attractions
-            div#attractions.btn-group(data-toggle="buttons")
-              label.btn.btn-primary
-                input(type="checkbox" autocomplete="off" value="Diplos") 
-                | Diplos 
-        h2.mt-1 Notable Ships
-        div.form-group#ships
-            div.btn-group(data-toggle="buttons")
-              label.btn.btn-primary
-                input(type="checkbox" autocomplete="off" value="F.Ships") 
-                | Fighters 
-              label.btn.btn-primary
-                input(type="checkbox" autocomplete="off" value="H.Ships") 
-                | Haulers
-              label.btn.btn-primary
-                input(type="checkbox" autocomplete="off" value="E.Ships") 
-                | Explorers
-              label.btn.btn-primary
-                input(type="checkbox" autocomplete="off" value="X.Ships") 
-                | Exotics
-              label.btn.btn-primary
-                input(type="checkbox" autocomplete="off" value="G.Ships") 
-                | Good
+    section#tag-container
+      h2#generated-tag
+    form
+      section#primary 
+        h2 Primary Information
+        hr
+        label(for=region) Region
+        select#region
+          option(value=1 selected) Region 1
+          option(value=2) Region 2
+          option(value=3) Region 3
+          option(value=4) Region 4
+          option(value=5) Region 5
+          option(value=6) Region 6
+          option(value=7) Region 7
+          option(value=8) Region 8
+          option(value=9) Region 9
+          option(value=10) Region 10
+          option(value=11) Region 11
+        label(for="index") Solar Index 
+        input#index(type="text" name="index" placeholder="012A")
+        label(for="name") Name
+        input#name(type="text" name="name" placeholder="Un-named System")
+        div.group
+          input.primary(type="checkbox" id="wealthy" autocomplete="off" value="$")
+          label(for="wealthy") Wealthy
+        div.group
+          input.primary(type="checkbox" id="conflict" autocomplete="off" value="!")
+          label(for="conflict") High Conflict
+        div.group
+          input.primary(type="checkbox" id="exotic" autocomplete="off" value="X")
+          label(for="exotic") Exotic Planets
+      section#resources
+        h2 Notable Resources
+        hr
+        div.group
+          input(type="checkbox" autocomplete="off" id="Aq" value="Aq") 
+          label(for="Aq") Aquaspheres
+        div.group
+          input(type="checkbox" autocomplete="off" id="AP" value="AP")
+          label(for="AP") Albumen Pearls
+        div.group
+          input(type="checkbox" autocomplete="off" id="VC" value="VC") 
+          label(for="VC") Vortex Cubes
+        div.group
+          input(type="checkbox" autocomplete="off" id="GB" value="GB")
+          label(for="GB") Gravitino Balls
+        div.group
+          input(type="checkbox" autocomplete="off" id="Ra" value="Ra")
+          label(for="Ra") Radnox
+        div.group
+          input(type="checkbox" autocomplete="off" id="Mu" value="Mu") 
+          label(for="Mu") Murrine 
+        div.group
+          input(type="checkbox" autocomplete="off" id="Om" value="Om") 
+          label(for="Om") Omegon 
+      section#attractions
+        h2 Attractions
+        hr
+        div.group
+          input(type="checkbox" autocomplete="off" id="Diplos" value="Diplos") 
+          label(for="Diplos") Diplos 
+      section#ships
+        h2 Notable Ships
+        hr
+        div.group
+          input(type="checkbox" autocomplete="off" id="fighter-ships" value="F.Ships") 
+          label(for="fighter-ships") Fighters 
+        div.group
+          input(type="checkbox" autocomplete="off" id="hauler-ships" value="H.Ships") 
+          label(for="hauler-ships") Haulers
+        div.group
+          input(type="checkbox" autocomplete="off" id="explorer-ships" value="E.Ships") 
+          label(for="explorer-ships") Explorers
+        div.group
+          input(type="checkbox" autocomplete="off" id="exotic-ships" value="X.Ships") 
+          label(for="exotic-ships") Exotics
+        div.group
+          input(type="checkbox" autocomplete="off" id="good-ships" value="G.Ships") 
+          label(for="good-ships") Good
