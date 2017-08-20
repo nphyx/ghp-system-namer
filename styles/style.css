@@ -286,7 +286,7 @@ section {
 
 @media screen and (max-width: 425px) {
   section#resources .group label p {
-    font-size: 1.2em; }
+    font-size: 1em; }
   section#resources {
     grid-template-columns: repeat(4, 1fr); }
     section#resources h1, section#resources h2, section#resources h3, section#resources h4, section#resources hr {
