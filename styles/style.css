@@ -183,7 +183,8 @@ section {
         color: #222;
         width: calc(100% + .41rem);
         padding: .3rem;
-        margin: -.8rem -.5rem; }
+        margin: -.8rem -.5rem;
+        font-size: 0.9rem; }
       section .group label figure {
         position: relative; }
         section .group label figure img {
@@ -215,26 +216,26 @@ section {
     text-align: left;
     padding-left: 2.7em;
     margin: 0 auto; }
-  section#primary input[type=checkbox]::after {
+  section#primary input[type=checkbox] + label::before {
     content: "";
-    width: 6em;
-    height: 6em;
+    width: 6rem;
+    height: 6rem;
     position: absolute;
-    left: -1em;
-    top: -1.85em;
+    left: -1rem;
+    top: -1.7rem;
     visibility: visible;
     opacity: 0.7;
     z-index: 1;
     background-size: contain; }
-  section#primary input[type=checkbox]:checked::after {
+  section#primary input[type=checkbox]:checked + label::before {
     opacity: 1.0; }
-  section#primary .group:hover input[type=checkbox]::after {
+  section#primary .group:hover input[type=checkbox] + label::before {
     opacity: 1.0; }
-  section#primary #wealthy::after {
+  section#primary #wealthy + label::before {
     background-image: url("../assets/primary-econ.png"); }
-  section#primary #exotic::after {
+  section#primary #exotic + label::before {
     background-image: url("../assets/primary-exotic.png"); }
-  section#primary #conflict::after {
+  section#primary #conflict + label::before {
     background-image: url("../assets/primary-conflict.png"); }
   section#resources {
     grid-template-columns: repeat(12, 1fr); }
