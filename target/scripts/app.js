@@ -72,7 +72,7 @@ function updateTag() {
 		return el.checked;
 	}).map(function (el) {
 		return el.value;
-	}).join("");
+	}).join(",");
 
 	if (attractions) secondaryFeatures.push(attractions);
 

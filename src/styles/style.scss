@@ -1,6 +1,9 @@
 @import "geonms-font";
 @import "reset";
 
+$rare: rgb(0,119,81);
+$exotic: rgb(113,25,127);
+
 html {font-size:16px;}
 body {
 	font-size:1em; color:white; font-family:Roboto, sans-serif; 
@@ -31,7 +34,7 @@ header {
 }
 
 h2#generated-tag {text-transform:none; background:transparent;
-	&.sticky {position:fixed; top:0; background:#444444; width:calc(100% - 2em); padding:1em; margin:0 -1em; transition:background 0.2s ease-in; z-index:1000;}
+	&.sticky {position:fixed; top:0; left:0; background:#444444; width:calc(100vw - 2em); padding:1em; margin:0; transition:background 0.2s ease-in; z-index:1000;}
 }
 
 section {
@@ -40,16 +43,50 @@ section {
 	grid-auto-rows:auto;
 	grid-gap:.5em;
 	background:rgba(16,16,16,0.3);
-	background:linear-gradient(180deg, rgba(16,16,16,0.9), rgba(16,16,16,0.6));
+	background:linear-gradient(180deg, rgba(16,16,16,0.95), rgba(16,16,16,0.8));
 	h1, h2, h3, h4 {grid-column:span 6;}
 	hr {height:2px; width:100%; grid-column:span 6; border:0 none; background:linear-gradient(90deg, white 0%, transparent 100%)}
 	input[type=text] {font-size:1rem; border-bottom:2px solid white; padding:.5em; color:white;margin-right:1em; align-self:flex-start;}
 	input[type=text]::placeholder {color:rgba(255,255,255,0.3)}
 	label {text-align:right; align-self:flex-end; padding:.5em;}
-	.group {position:relative;
-		grid-column:span 2; border-radius:2em;
-		label {display:block; padding:.5em; text-align:center; border:2px solid white; border-radius:2em; background:rgba(16,16,128,0.3);}
-		input:checked + label {font-weight:bold; background:rgba(16,16,128,0.6);}
+	.group {position:relative; grid-column:span 2;
+		label {display:block; padding:.5em; text-align:center; border:.5em solid white; opacity:.7; transition:all .3s ease;
+			box-shadow:0 0.1em 0.1em 0.1em rgba(0,0,0,0.3);
+			p {display:block; background:white; color:#222; width:calc(100% + .41rem); padding:.3rem; margin:-.8rem -.5rem;}
+			figure {position:relative;
+				img {width:100%; margin:1em 0 0 0;}
+				figcaption {position:absolute; bottom:.1rem; left:.1rem; font-family:Geo-NMS; font-size:2em; font-weight:bold;}
+			}
+		}
+		label:hover {opacity:0.8; box-shadow:0 0.2em 0.1em 0.1em rgba(0,0,0,0.3);}
+		input:checked + label {opacity:1; font-weight:normal;
+			box-shadow:0 0.3em 0.1em 0.1em rgba(0,0,0,0.3);
+		}
+		&.rare label {background-color:$rare;}
+		&.exotic label {background-color:$exotic;}
+	}
+
+	&#primary {
+		.group label {border:0 none; border-radius:2em; background:$exotic;}
+	}
+
+	&#resources {grid-template-columns:repeat(12, 1fr);
+		h1, h2, h3, h4, hr {grid-column:span 12;}
+	}
+
+	&#attractions, &#ships {
+		.group label {border:none; padding:0;
+			figure {
+				img {margin:0 0 -3px 0;}
+				figcaption {bottom:.1rem; left:.1rem; text-shadow:0 .05em .05em rgba(0,0,0,0.5); text-transform:uppercase; font-size:3rem;}
+			}
+		}
+	}
+}
+
+@media screen and (max-width:950px) {
+	section#resources {grid-template-columns:repeat(10, 1fr);
+		h1, h2, h3, h4, hr {grid-column:span 10;}
 	}
 }
 
@@ -58,7 +95,9 @@ section {
 		h1, h2, h3, h4, hr {grid-column:span 4;}
 		label {grid-column:span 1;}
 		input, select {grid-column:span 3;}
-		.group {grid-column:span 2;}
+	}
+	section#resources {grid-template-columns:repeat(8, 1fr);
+		h1, h2, h3, h4, hr {grid-column:span 8;}
 	}
 }
 
@@ -66,15 +105,44 @@ section {
 	h1 {font-size:2em;}
 	h2 {font-size:1.6em;}
 	h2#generated-tag, h3 {font-size:1.3em;}
-	h2#generated-tag.sticky {width:calc(100% - 1em)}
+	h2#generated-tag.sticky {width:calc(100vw - 1em)}
 	header, section {width:calc(100% - 4em); margin:1em 1em; padding:1em;}
 	header { grid-template-columns:1fr; text-align:center;
 		img {margin:0 auto; grid-row:span 1; width:40%;}
 		h1, p {margin:.1em 0;}
 	}
-	section {grid-template-columns:1fr;
-		h1, h2, h3, h4, hr, label, input, select, .group {grid-column:span 1;}
+}
+
+@media screen and (max-width:625px) {
+	section#resources .group label p {font-size:.8em;}
+	section#attractions, section#ships {grid-template-columns:repeat(4, 1fr);
+		h1, h2, h3, h4, hr {grid-column:span 4;}
+	}
+}
+
+@media screen and (max-width:575px) {
+	section#attractions, section#ships {
+		.group label figure figcaption {font-size:2rem;}
+	}
+}
+
+@media screen and (max-width:550px) {
+	section#primary {grid-template-columns:repeat(2, 1fr);
+		h1, h2, h3, h4, hr, label, input, select, .group {grid-column:span 2;}
 		label {text-align:left;}
 		input[type=text] {margin-left:1em;}
+	}
+	section#resources {grid-template-columns:repeat(6, 1fr);
+		h1, h2, h3, h4, hr {grid-column:span 6;}
+	}
+}
+
+@media screen and (max-width:425px) {
+	section#resources .group label p {font-size:1.2em;}
+	section#resources {grid-template-columns:repeat(4, 1fr);
+		h1, h2, h3, h4, hr {grid-column:span 4;}
+	}
+	section#attractions, section#ships {grid-template-columns:repeat(2, 1fr);
+		h1, h2, h3, h4, hr {grid-column:span 2;}
 	}
 }

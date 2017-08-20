@@ -75,7 +75,7 @@ function updateTag() {
 			Array.prototype.slice.apply(document.querySelectorAll("#attractions input"))
 			.filter((el) => el.checked)
 			.map((el) => el.value)
-			.join("");
+			.join(",");
 
 		if(attractions) secondaryFeatures.push(attractions);
 
