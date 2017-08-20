@@ -56,7 +56,7 @@ section {
 	.group {position:relative; grid-column:span 2;
 		label {display:block; padding:.5em; text-align:center; border:.5em solid white; opacity:.7; transition:all .3s ease;
 			box-shadow:0 0.1em 0.1em 0.1em rgba(0,0,0,0.3);
-			p {display:block; background:white; color:#222; width:calc(100% + .41rem); padding:.3rem; margin:-.8rem -.5rem;}
+			p {display:block; background:white; color:#222; width:calc(100% + .41rem); padding:.3rem; margin:-.8rem -.5rem; font-size:0.9rem;}
 			figure {position:relative;
 				img {width:100%; margin:1em 0 0 0;}
 				figcaption {position:absolute; bottom:.1rem; left:.1rem; font-family:Geo-NMS; font-size:2em; font-weight:bold;}
@@ -74,12 +74,12 @@ section {
 		.group label {border:0 none; border-radius:2em; background-color:$exotic;
 			font-size:1.3em; text-align:left; padding-left:2.7em; margin:0 auto;
 		}
-		input[type=checkbox]::after {content:""; width:6em; height:6em; position:absolute; left:-1em; top:-1.85em; visibility:visible; opacity:0.7; z-index:1; background-size:contain;}
-		input[type=checkbox]:checked::after {opacity:1.0;}
-		.group:hover input[type=checkbox]::after {opacity:1.0;}
-		#wealthy::after {background-image:url("../assets/primary-econ.png");}
-		#exotic::after {background-image:url("../assets/primary-exotic.png");}
-		#conflict::after {background-image:url("../assets/primary-conflict.png");}
+		input[type=checkbox] + label::before {content:""; width:6rem; height:6rem; position:absolute; left:-1rem; top:-1.7rem; visibility:visible; opacity:0.7; z-index:1; background-size:contain;}
+		input[type=checkbox]:checked + label::before {opacity:1.0;}
+		.group:hover input[type=checkbox] + label::before {opacity:1.0;}
+		#wealthy + label::before {background-image:url("../assets/primary-econ.png");}
+		#exotic + label::before {background-image:url("../assets/primary-exotic.png");}
+		#conflict + label::before {background-image:url("../assets/primary-conflict.png");}
 	}
 
 	&#resources {grid-template-columns:repeat(12, 1fr);
