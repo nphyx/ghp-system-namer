@@ -118,10 +118,11 @@ h2#generated-tag {
   h2#generated-tag.sticky {
     position: fixed;
     top: 0;
+    left: 0;
     background: #444444;
-    width: calc(100% - 2em);
+    width: calc(100vw - 2em);
     padding: 1em;
-    margin: 0 -1em;
+    margin: 0;
     transition: background 0.2s ease-in;
     z-index: 1000; }
 
@@ -131,7 +132,7 @@ section {
   grid-auto-rows: auto;
   grid-gap: .5em;
   background: rgba(16, 16, 16, 0.3);
-  background: linear-gradient(180deg, rgba(16, 16, 16, 0.9), rgba(16, 16, 16, 0.6)); }
+  background: linear-gradient(180deg, rgba(16, 16, 16, 0.95), rgba(16, 16, 16, 0.8)); }
   section h1, section h2, section h3, section h4 {
     grid-column: span 6; }
   section hr {
@@ -155,18 +156,70 @@ section {
     padding: .5em; }
   section .group {
     position: relative;
-    grid-column: span 2;
-    border-radius: 2em; }
+    grid-column: span 2; }
     section .group label {
       display: block;
       padding: .5em;
       text-align: center;
-      border: 2px solid white;
-      border-radius: 2em;
-      background: rgba(16, 16, 128, 0.3); }
+      border: .5em solid white;
+      opacity: .7;
+      transition: all .3s ease;
+      box-shadow: 0 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.3); }
+      section .group label p {
+        display: block;
+        background: white;
+        color: #222;
+        width: calc(100% + .41rem);
+        padding: .3rem;
+        margin: -.8rem -.5rem; }
+      section .group label figure {
+        position: relative; }
+        section .group label figure img {
+          width: 100%;
+          margin: 1em 0 0 0; }
+        section .group label figure figcaption {
+          position: absolute;
+          bottom: .1rem;
+          left: .1rem;
+          font-family: Geo-NMS;
+          font-size: 2em;
+          font-weight: bold; }
+    section .group label:hover {
+      opacity: 0.8;
+      box-shadow: 0 0.2em 0.1em 0.1em rgba(0, 0, 0, 0.3); }
     section .group input:checked + label {
-      font-weight: bold;
-      background: rgba(16, 16, 128, 0.6); }
+      opacity: 1;
+      font-weight: normal;
+      box-shadow: 0 0.3em 0.1em 0.1em rgba(0, 0, 0, 0.3); }
+    section .group.rare label {
+      background-color: #007751; }
+    section .group.exotic label {
+      background-color: #71197f; }
+  section#primary .group label {
+    border: 0 none;
+    border-radius: 2em;
+    background: #71197f; }
+  section#resources {
+    grid-template-columns: repeat(12, 1fr); }
+    section#resources h1, section#resources h2, section#resources h3, section#resources h4, section#resources hr {
+      grid-column: span 12; }
+  section#attractions .group label, section#ships .group label {
+    border: none;
+    padding: 0; }
+    section#attractions .group label figure img, section#ships .group label figure img {
+      margin: 0 0 -3px 0; }
+    section#attractions .group label figure figcaption, section#ships .group label figure figcaption {
+      bottom: .1rem;
+      left: .1rem;
+      text-shadow: 0 0.05em 0.05em rgba(0, 0, 0, 0.5);
+      text-transform: uppercase;
+      font-size: 3rem; }
+
+@media screen and (max-width: 950px) {
+  section#resources {
+    grid-template-columns: repeat(10, 1fr); }
+    section#resources h1, section#resources h2, section#resources h3, section#resources h4, section#resources hr {
+      grid-column: span 10; } }
 
 @media screen and (max-width: 800px) {
   section {
@@ -177,8 +230,10 @@ section {
       grid-column: span 1; }
     section input, section select {
       grid-column: span 3; }
-    section .group {
-      grid-column: span 2; } }
+  section#resources {
+    grid-template-columns: repeat(8, 1fr); }
+    section#resources h1, section#resources h2, section#resources h3, section#resources h4, section#resources hr {
+      grid-column: span 8; } }
 
 @media screen and (max-width: 700px) {
   h1 {
@@ -188,7 +243,7 @@ section {
   h2#generated-tag, h3 {
     font-size: 1.3em; }
   h2#generated-tag.sticky {
-    width: calc(100% - 1em); }
+    width: calc(100vw - 1em); }
   header, section {
     width: calc(100% - 4em);
     margin: 1em 1em;
@@ -201,12 +256,42 @@ section {
       grid-row: span 1;
       width: 40%; }
     header h1, header p {
-      margin: .1em 0; }
-  section {
-    grid-template-columns: 1fr; }
-    section h1, section h2, section h3, section h4, section hr, section label, section input, section select, section .group {
-      grid-column: span 1; }
-    section label {
+      margin: .1em 0; } }
+
+@media screen and (max-width: 625px) {
+  section#resources .group label p {
+    font-size: .8em; }
+  section#attractions, section#ships {
+    grid-template-columns: repeat(4, 1fr); }
+    section#attractions h1, section#attractions h2, section#attractions h3, section#attractions h4, section#attractions hr, section#ships h1, section#ships h2, section#ships h3, section#ships h4, section#ships hr {
+      grid-column: span 4; } }
+
+@media screen and (max-width: 575px) {
+  section#attractions .group label figure figcaption, section#ships .group label figure figcaption {
+    font-size: 2rem; } }
+
+@media screen and (max-width: 550px) {
+  section#primary {
+    grid-template-columns: repeat(2, 1fr); }
+    section#primary h1, section#primary h2, section#primary h3, section#primary h4, section#primary hr, section#primary label, section#primary input, section#primary select, section#primary .group {
+      grid-column: span 2; }
+    section#primary label {
       text-align: left; }
-    section input[type=text] {
-      margin-left: 1em; } }
+    section#primary input[type=text] {
+      margin-left: 1em; }
+  section#resources {
+    grid-template-columns: repeat(6, 1fr); }
+    section#resources h1, section#resources h2, section#resources h3, section#resources h4, section#resources hr {
+      grid-column: span 6; } }
+
+@media screen and (max-width: 425px) {
+  section#resources .group label p {
+    font-size: 1.2em; }
+  section#resources {
+    grid-template-columns: repeat(4, 1fr); }
+    section#resources h1, section#resources h2, section#resources h3, section#resources h4, section#resources hr {
+      grid-column: span 4; }
+  section#attractions, section#ships {
+    grid-template-columns: repeat(2, 1fr); }
+    section#attractions h1, section#attractions h2, section#attractions h3, section#attractions h4, section#attractions hr, section#ships h1, section#ships h2, section#ships h3, section#ships h4, section#ships hr {
+      grid-column: span 2; } }
