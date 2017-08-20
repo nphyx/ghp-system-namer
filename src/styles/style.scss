@@ -19,8 +19,12 @@ h1 {font-size:2.5em;}
 h2 {font-size:2em;}
 h3 {font-size:1.5em;}
 h4 {font-size:0.9em;}
-input {border:0 none; background:transparent; outline:0 none;}
+input {border:0 none; background:transparent; outline:0 none; font-size:1rem;}
 input[type=checkbox] {visibility:hidden; position:absolute;}
+select {background:none; border:0 none; border-bottom:2px solid white; color:white; font-size:1rem;
+	&:focus {outline:none;}
+	option {color:black;}
+}
 
 header, section {width:calc(100% - 6em); margin:1em 2em; padding:1em;}
 
@@ -67,7 +71,15 @@ section {
 	}
 
 	&#primary {
-		.group label {border:0 none; border-radius:2em; background:$exotic;}
+		.group label {border:0 none; border-radius:2em; background-color:$exotic;
+			font-size:1.3em; text-align:left; padding-left:2.7em; margin:0 auto;
+		}
+		input[type=checkbox]::after {content:""; width:6em; height:6em; position:absolute; left:-1em; top:-1.85em; visibility:visible; opacity:0.7; z-index:1; background-size:contain;}
+		input[type=checkbox]:checked::after {opacity:1.0;}
+		.group:hover input[type=checkbox]::after {opacity:1.0;}
+		#wealthy::after {background-image:url("../assets/primary-econ.png");}
+		#exotic::after {background-image:url("../assets/primary-exotic.png");}
+		#conflict::after {background-image:url("../assets/primary-conflict.png");}
 	}
 
 	&#resources {grid-template-columns:repeat(12, 1fr);

@@ -87,11 +87,23 @@ h4 {
 input {
   border: 0 none;
   background: transparent;
-  outline: 0 none; }
+  outline: 0 none;
+  font-size: 1rem; }
 
 input[type=checkbox] {
   visibility: hidden;
   position: absolute; }
+
+select {
+  background: none;
+  border: 0 none;
+  border-bottom: 2px solid white;
+  color: white;
+  font-size: 1rem; }
+  select:focus {
+    outline: none; }
+  select option {
+    color: black; }
 
 header, section {
   width: calc(100% - 6em);
@@ -198,7 +210,32 @@ section {
   section#primary .group label {
     border: 0 none;
     border-radius: 2em;
-    background: #71197f; }
+    background-color: #71197f;
+    font-size: 1.3em;
+    text-align: left;
+    padding-left: 2.7em;
+    margin: 0 auto; }
+  section#primary input[type=checkbox]::after {
+    content: "";
+    width: 6em;
+    height: 6em;
+    position: absolute;
+    left: -1em;
+    top: -1.85em;
+    visibility: visible;
+    opacity: 0.7;
+    z-index: 1;
+    background-size: contain; }
+  section#primary input[type=checkbox]:checked::after {
+    opacity: 1.0; }
+  section#primary .group:hover input[type=checkbox]::after {
+    opacity: 1.0; }
+  section#primary #wealthy::after {
+    background-image: url("../assets/primary-econ.png"); }
+  section#primary #exotic::after {
+    background-image: url("../assets/primary-exotic.png"); }
+  section#primary #conflict::after {
+    background-image: url("../assets/primary-conflict.png"); }
   section#resources {
     grid-template-columns: repeat(12, 1fr); }
     section#resources h1, section#resources h2, section#resources h3, section#resources h4, section#resources hr {
