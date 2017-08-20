@@ -138,7 +138,7 @@ section {
 }
 
 @media screen and (max-width:425px) {
-	section#resources .group label p {font-size:1.2em;}
+	section#resources .group label p {font-size:1em;}
 	section#resources {grid-template-columns:repeat(4, 1fr);
 		h1, h2, h3, h4, hr {grid-column:span 4;}
 	}
