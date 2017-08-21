@@ -1,5 +1,6 @@
 "use strict";
-let bgSrc = "assets/background-"+(~~(Math.random()*4)+1)+".jpg";
+let backgroundCount = 7;
+let bgSrc = "assets/background-"+(Math.floor(Math.random()*backgroundCount))+".jpg";
 //let atlasSrc = "assets/atlas.png";
 let loaded = 1;
 window.addEventListener("load", function() {
@@ -16,11 +17,6 @@ window.addEventListener("load", function() {
 	let bgImg = document.createElement("img");
 	bgImg.src = bgSrc;
 	bgImg.addEventListener("load", imgLoadCb);
-	/*
-	let atlasImg = document.createElement("img");
-	atlasImg.src = atlasSrc;
-	atlasImg.addEventListener("load", imgLoadCb);
-	*/
 
 	window.addEventListener("scroll", pinTag);
 });

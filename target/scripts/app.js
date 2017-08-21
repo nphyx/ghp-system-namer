@@ -1,6 +1,7 @@
 "use strict";
 
-var bgSrc = "assets/background-" + (~~(Math.random() * 4) + 1) + ".jpg";
+var backgroundCount = 7;
+var bgSrc = "assets/background-" + Math.floor(Math.random() * backgroundCount) + ".jpg";
 //let atlasSrc = "assets/atlas.png";
 var loaded = 1;
 window.addEventListener("load", function () {
@@ -17,11 +18,6 @@ window.addEventListener("load", function () {
 	var bgImg = document.createElement("img");
 	bgImg.src = bgSrc;
 	bgImg.addEventListener("load", imgLoadCb);
-	/*
- let atlasImg = document.createElement("img");
- atlasImg.src = atlasSrc;
- atlasImg.addEventListener("load", imgLoadCb);
- */
 
 	window.addEventListener("scroll", pinTag);
 });
