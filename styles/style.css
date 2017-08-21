@@ -216,6 +216,8 @@ section {
     text-align: left;
     padding-left: 2.7em;
     margin: 0 auto; }
+  section#primary #index {
+    width: 4em; }
   section#primary input[type=checkbox] + label::before {
     content: "";
     width: 6rem;
