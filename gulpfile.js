@@ -7,12 +7,7 @@ var webpack = require("webpack");
 var del = require("del");
 var path = require("path");
 var exec = require("child_process").exec;
-/*
-var babelRegister = require("babel-core/register");
-var exec = require("child_process").exec;
-var mocha = require("gulp-mocha");
-var istanbul = require("gulp-babel-istanbul");
-*/
+var appcache = require("gulp-appcache");
 
 const webpackConfig = {
 	entry:path.resolve(__dirname, "target/scripts/app.js"),
@@ -26,6 +21,20 @@ const webpackConfig = {
 		new webpack.optimize.UglifyJsPlugin()
   ]
 }
+
+gulp.task("manifest", ["webpack"], function() {
+	var config = {
+		relativePath:"./",
+		hash:true,
+		preferOnline:true,
+		network:["http://*", "*"],
+		filename:"ghpsn.manifest",
+		exclude:"ghpsn.manifest"
+	}
+	return gulp.src(["dist/**/*"])
+		.pipe(appcache(config))
+		.pipe(gulp.dest("dist"));
+});
 
 gulp.task("clean:scripts", function() {
 	return del(["target/scripts/*", "dist/scripts/*"]);
@@ -46,7 +55,7 @@ gulp.task("scripts", ["clean:scripts"], function() {
 });
 
 gulp.task("markup", ["clean:markup"], function() {
-	return gulp.src(["src/markup/*pug"])
+	return gulp.src(["src/markup/index.pug"])
 	.pipe(pug())
 	.pipe(gulp.dest("dist"))
 });
@@ -67,7 +76,7 @@ gulp.task("webpack", ["scripts", "markup", "styles"], function(callback) {
 	});
 });
 
-gulp.task("deploy", ["webpack"], function(cb) {
+gulp.task("deploy", ["manifest"], function(cb) {
 	exec("git subtree push --prefix dist hub gh-pages", function(err, stdout, stderr) {
 		console.log(stdout);
 		console.log(stderr);
@@ -75,4 +84,4 @@ gulp.task("deploy", ["webpack"], function(cb) {
 	});
 });
 
-gulp.task("default", ["webpack", "styles", "markup"]);
+gulp.task("default", ["manifest"]);
