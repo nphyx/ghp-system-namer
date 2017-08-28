@@ -1,18 +1,14 @@
+include ./mixins
 doctype html
-html
+html(manifest="ghpsn.manifest")
   head
     title Galactic Hub Project | System Tag Generator
-    //- 
-      link(href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet")
-      script(src="https://code.jquery.com/jquery-3.2.1.slim.min.js" type="text/javascript")
-      script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" type="text/javascript")
-      script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" type="text/javascript")
     link(href="styles/style.css" rel="stylesheet")
     script(src="scripts/app.js" type="text/javascript")
     meta(name="viewport", content="width=device-width, initial-scale=1")
-  body
+  body.system
     header
-      img(src="https://nomanssky.gamepedia.com/media/nomanssky.gamepedia.com/7/75/Galactic_Hub_Emblem.png?version=98ce4d8b0a1a3cd636e53d0510871fc6")
+      img(src="assets/logo-ghp.png")
       h1 System Tag Generator
       p Easily generate Galactic Hub compatible system tags.
     section#tag-container
@@ -50,131 +46,28 @@ html
       section#resources
         h2 Notable Resources
         hr
-        div.group.rare
-          input(type="checkbox" autocomplete="off" id="Aq" value="Aq") 
-          label.exotic(for="Aq") 
-            p Aquasphere
-            figure
-              img(src="assets/resource-aquasphere.png" alt="Aquasphere")
-              figcaption Aq
-        div.group.rare
-          input(type="checkbox" autocomplete="off" id="AP" value="AP") 
-          label.exotic(for="AP") 
-            p Albumen Pearl
-            figure
-              img(src="assets/resource-albumenpearl.png" alt="Albumen Pearl")
-              figcaption AP
-        div.group.rare
-          input(type="checkbox" autocomplete="off" id="VC" value="VC") 
-          label(for="VC") 
-            p Vortex Cube
-            figure
-              img(src="assets/resource-vortexcube.png" alt="Vortex Cube")
-              figcaption VC
-        div.group.rare
-          input(type="checkbox" autocomplete="off" id="GB" value="GB")
-          label(for="GB")
-            p Gravitino Ball
-            figure
-              img(src="assets/resource-gravitinoball.png" alt="Gravitino Ball")
-              figcaption GB 
-        div.group.exotic
-          input(type="checkbox" autocomplete="off" id="Ra" value="Ra")
-          label(for="Ra")
-            p Radnox
-            figure
-              img(src="assets/resource-radnox.png" alt="Radnox")
-              figcaption Ra
-        div.group.exotic
-          input(type="checkbox" autocomplete="off" id="Mu" value="Mu") 
-          label(for="Mu")
-            p Murrine
-            figure
-              img(src="assets/resource-murrine.png" alt="Murrine")
-              figcaption Mu 
-        div.group.exotic
-          input(type="checkbox" autocomplete="off" id="Om" value="Om") 
-          label(for="Om")
-            p Omegon 
-            figure
-              img(src="assets/resource-omegon.png" alt="Omegon")
-              figcaption Om
-        div.group.exotic
-          input(type="checkbox" autocomplete="off" id="Ca" value="Ca") 
-          label(for="Ca")
-            p Calium
-            figure
-              img(src="assets/resource-calium.png" alt="Calium")
-              figcaption Ca
+        +resource("rare",   "Aquasphere",     "Aq", "resource-aquasphere.png") 
+        +resource("rare",   "Albumen Pearl",  "AP", "resource-albumenpearl.png") 
+        +resource("rare",   "Vortex Cube",    "VC", "resource-vortexcube.png")
+        +resource("rare",   "Gravitino Ball", "GB", "resource-gravitinoball.png")
+        +resource("exotic", "Radnox",         "Ra", "resource-radnox.png")
+        +resource("exotic", "Murrine",        "Mu", "resource-murrine.png")
+        +resource("exotic", "Omegon",         "Om", "resource-omegon.png")
+        +resource("exotic", "Calium",         "Ca", "resource-calium.png")
       section#attractions
         h2 Attractions
         hr
-        div.group
-          input(type="checkbox" autocomplete="off" id="Diplos" value="Diplos") 
-          label(for="Diplos")
-            figure
-              img(src="assets/attraction-diplo.jpg" alt="Diplos")
-              figcaption Diplos
-        div.group
-          input(type="checkbox" autocomplete="off" id="Jacks" value="Jacks") 
-          label(for="Jacks")
-            figure
-              img(src="assets/attraction-jacks.jpg" alt="Jack Planet")
-              figcaption Jacks
-        div.group
-          input(type="checkbox" autocomplete="off" id="Hexagons" value="Hexagons") 
-          label(for="Hexagons")
-            figure
-              img(src="assets/attraction-hex.jpg" alt="Hexagon Planet")
-              figcaption Hexagons
-        div.group
-          input(type="checkbox" autocomplete="off" id="Shards" value="Shards") 
-          label(for="Shards")
-            figure
-              img(src="assets/attraction-shards.jpg" alt="Shard Planet")
-              figcaption Shards
-        div.group
-          input(type="checkbox" autocomplete="off" id="Loops" value="Loops") 
-          label(for="Loops")
-            figure
-              img(src="assets/attraction-loops.jpg" alt="Loop Structures")
-              figcaption Loops
-        div.group
-          input(type="checkbox" autocomplete="off" id="Bubbles" value="Bubbles") 
-          label(for="Bubbles")
-            figure
-              img(src="assets/attraction-bubbles.jpg" alt="Bubble Planet")
-              figcaption Bubbles
+        +attraction("Diplos",   "Diplos",   "attraction-diplo.jpg")
+        +attraction("Jacks",    "Jacks",    "attraction-jacks.jpg")
+        +attraction("Hexagons", "Hexagons", "attraction-hex.jpg")
+        +attraction("Shards",   "Shards",   "attraction-shards.jpg")
+        +attraction("Loops",    "Loops",    "attraction-loops.jpg")
+        +attraction("Bubbles",  "Bubbles",  "attraction-bubbles.jpg")
       section#ships
         h2 Notable Ships
         hr
-        div.group
-          input(type="checkbox" autocomplete="off" id="fighter-ships" value="F.Ships") 
-          label(for="fighter-ships")
-            figure
-              img(src="assets/ship-fighter.jpg" alt="Figher Ship")
-              figcaption Fighters
-        div.group
-          input(type="checkbox" autocomplete="off" id="hauler-ships" value="H.Ships") 
-          label(for="hauler-ships")
-            figure
-              img(src="assets/ship-hauler.jpg" alt="Hauler Ship")
-              figcaption Haulers
-        div.group
-          input(type="checkbox" autocomplete="off" id="explorer-ships" value="E.Ships") 
-          label(for="explorer-ships")
-            figure
-              img(src="assets/ship-explorer.jpg" alt="Explorer Ship")
-              figcaption Explorers
-        div.group
-          input(type="checkbox" autocomplete="off" id="exotic-ships" value="X.Ships") 
-          label(for="exotic-ships")
-            figure
-              img(src="assets/ship-exotic.jpg" alt="Exotic Ship")
-              figcaption Exotics
-        div.group
-          input(type="checkbox" autocomplete="off" id="great-ships" value="G.Ships") 
-          label(for="great-ships")
-            figure
-              img(src="assets/ship-great.jpg" alt="Great Ship")
-              figcaption Great
+        +attraction("Fighters",  "F.Ships",  "ship-fighter.jpg")
+        +attraction("Haulers",   "H.Ships",  "ship-hauler.jpg")
+        +attraction("Explorers", "E.Ships",  "ship-explorer.jpg")
+        +attraction("Exotics",   "X.Ships",  "ship-exotic.jpg")
+        +attraction("Great",     "G.Ships",  "ship-great.jpg")

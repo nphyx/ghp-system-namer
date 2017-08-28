@@ -2,7 +2,6 @@
 
 var backgroundCount = 7;
 var bgSrc = "assets/background-" + Math.floor(Math.random() * backgroundCount) + ".jpg";
-//let atlasSrc = "assets/atlas.png";
 var loaded = 1;
 window.addEventListener("load", function () {
 	var form = document.getElementsByTagName("form")[0];
@@ -30,65 +29,64 @@ function pinTag() {
 }
 
 function setBackground() {
-	document.getElementsByTagName("body")[0].style.backgroundImage = "\n\t\turl(\"" + bgSrc + "\"),\n\t\tlinear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 30%)\n\t";
+	var bgImage = "url(\"" + bgSrc + "\"), linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 30%)";
+	document.querySelector("body").style.backgroundImage = bgImage;
+}
+
+function getPrimarySystemFeatures() {
+	// extract primary features
+	return Array.prototype.slice.apply(document.querySelectorAll("input.primary")).filter(function (el) {
+		return el.checked;
+	}).map(function (el) {
+		return el.value;
+	}).join("");
+}
+
+function getSolarIndex() {
+	// trim leading zeroes (or placeholder)
+	return document.querySelector("input#index").value.replace(/^[0]+/g, "").toUpperCase() || "XXXX";
+}
+
+function getRegion() {
+	return Array.prototype.slice.apply(document.querySelectorAll("#region option")).filter(function (el) {
+		return el.selected;
+	})[0].value;
+}
+
+function getSectionCheckboxes(id) {
+	return Array.prototype.slice.apply(document.querySelectorAll("#" + id + " input")).filter(function (el) {
+		return el.checked;
+	}).map(function (el) {
+		return el.value;
+	});
 }
 
 function updateTag() {
-	// extract region ID
-	var region = Array.prototype.slice.apply(document.querySelectorAll("#region option")).filter(function (el) {
-		return el.selected;
-	})[0].value;
+	var mode = document.querySelector("body.system") ? "System" : document.querySelector("body.planet") ? "Planet" : "";
 
-	// extract primary features
-	var primaryFeatures = Array.prototype.slice.apply(document.querySelectorAll("input.primary")).filter(function (el) {
-		return el.checked;
-	}).map(function (el) {
-		return el.value;
-	}).join("");
+	var name = document.querySelector("input#name").value || "Un-Named " + mode;
+	var primary = "",
+	    secondary = "";
 
-	// trim leading zeroes (or placeholder)
-	var address = document.querySelector("input#index").value.replace(/^[0]+/g, "").toUpperCase() || "XXXX";
-
-	// name (or placeholder)
-	var name = document.querySelector("input#name").value || "Un-Named System";
-
-	var secondaryFeatures = [];
+	if (mode === "System") {
+		var primaryFeatures = getPrimarySystemFeatures();
+		var address = getSolarIndex();
+		// extract region ID
+		var region = getRegion();
+		if (primaryFeatures) primaryFeatures = "-" + primaryFeatures;
+		if (address) address = "-" + address;
+		primary = "[HUB" + region + primaryFeatures + address + "] " + name;
+	}
 
 	// compose selected resources
-	var resources = Array.prototype.slice.apply(document.querySelectorAll("#resources input")).filter(function (el) {
-		return el.checked;
-	}).map(function (el) {
-		return el.value;
-	}).join("");
-
-	if (resources) secondaryFeatures.push(resources);
-
-	// compose selected attractions
-	var attractions = Array.prototype.slice.apply(document.querySelectorAll("#attractions input")).filter(function (el) {
-		return el.checked;
-	}).map(function (el) {
-		return el.value;
-	}).join(",");
-
-	if (attractions) secondaryFeatures.push(attractions);
-
-	// compose selected ships
-	var ships = Array.prototype.slice.apply(document.querySelectorAll("#ships input")).filter(function (el) {
-		return el.checked;
-	}).map(function (el) {
-		return el.value;
-	}).join(",");
-
-	if (ships) secondaryFeatures.push(ships);
-
-	// cleanup
-	if (primaryFeatures) primaryFeatures = "-" + primaryFeatures;
-	if (address) address = "-" + address;
-
-	var generatedTag = "[HUB" + region + primaryFeatures + address + "] " + name;
+	var secondaryFeatures = [getSectionCheckboxes("resources").join(""), getSectionCheckboxes("attractions").join(","), getSectionCheckboxes("ships").join(",")].filter(function (a) {
+		return a !== "";
+	});
 
 	// if there are any selected secondary feature tags append them
-	if (secondaryFeatures.length) generatedTag += " (" + secondaryFeatures.join(",") + ")";
+	if (secondaryFeatures.length) secondary = " (" + secondaryFeatures.join(",") + ")";
+
+	var generatedTag = primary + secondary;
 
 	// generate the new tag
 	document.querySelector("#generated-tag").innerHTML = generatedTag;

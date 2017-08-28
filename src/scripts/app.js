@@ -1,7 +1,6 @@
 "use strict";
 let backgroundCount = 7;
 let bgSrc = "assets/background-"+(Math.floor(Math.random()*backgroundCount))+".jpg";
-//let atlasSrc = "assets/atlas.png";
 let loaded = 1;
 window.addEventListener("load", function() {
 	let form = document.getElementsByTagName("form")[0];
@@ -30,69 +29,66 @@ function pinTag() {
 }
 
 function setBackground() {
-	document.getElementsByTagName("body")[0].style.backgroundImage = `
-		url("${bgSrc}"),
-		linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 30%)
-	`;
+	let bgImage = "url(\""+bgSrc+"\"), linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 30%)";
+	document.querySelector("body").style.backgroundImage = bgImage;
+}
+
+function getPrimarySystemFeatures() {
+	// extract primary features
+	return (
+		Array.prototype.slice.apply(document.querySelectorAll("input.primary"))
+		.filter((el) => el.checked)
+		.map((el) => el.value)
+		.join(""));
+}
+
+function getSolarIndex() {
+	// trim leading zeroes (or placeholder)
+	return document.querySelector("input#index").value.replace(/^[0]+/g, "").toUpperCase() || "XXXX";
+}
+
+function getRegion() {
+	return	(
+		Array.prototype.slice.apply(document.querySelectorAll("#region option"))
+		.filter((el) => el.selected)[0].value);
+}
+
+function getSectionCheckboxes(id) {
+	return (
+		Array.prototype.slice.apply(document.querySelectorAll("#"+id+" input"))
+		.filter((el) => el.checked)
+		.map((el) => el.value));
 }
 
 function updateTag() {
+	let mode = document.querySelector("body.system")?"System":
+		document.querySelector("body.planet")?"Planet":"";
+
+	let name = document.querySelector("input#name").value || "Un-Named "+ mode;
+	let primary = "", secondary = "";
+
+	if(mode === "System") {
+		let primaryFeatures = getPrimarySystemFeatures();
+		let address = getSolarIndex();
 		// extract region ID
-		let region = 
-			Array.prototype.slice.apply(document.querySelectorAll("#region option"))
-			.filter((el) => el.selected)[0].value;
-
-		// extract primary features
-		let primaryFeatures = 
-			Array.prototype.slice.apply(document.querySelectorAll("input.primary"))
-			.filter((el) => el.checked)
-			.map((el) => el.value)
-			.join("");
-
-		// trim leading zeroes (or placeholder)
-		let address = document.querySelector("input#index").value.replace(/^[0]+/g, "").toUpperCase() || "XXXX";
-		
-		// name (or placeholder)
-		let name = document.querySelector("input#name").value || "Un-Named System";
-
-		let secondaryFeatures = [];
-
-		// compose selected resources
-		let resources = 
-			Array.prototype.slice.apply(document.querySelectorAll("#resources input"))
-			.filter((el) => el.checked)
-			.map((el) => el.value)
-			.join("");
-
-		if(resources) secondaryFeatures.push(resources);
-
-		// compose selected attractions
-		let attractions = 
-			Array.prototype.slice.apply(document.querySelectorAll("#attractions input"))
-			.filter((el) => el.checked)
-			.map((el) => el.value)
-			.join(",");
-
-		if(attractions) secondaryFeatures.push(attractions);
-
-		// compose selected ships
-		let ships = 
-			Array.prototype.slice.apply(document.querySelectorAll("#ships input"))
-			.filter((el) => el.checked)
-			.map((el) => el.value)
-			.join(",");
-
-		if(ships) secondaryFeatures.push(ships);
-
-		// cleanup
+		let region = getRegion();
 		if(primaryFeatures) primaryFeatures = "-"+primaryFeatures;
 		if(address) address = "-"+address;
+		primary = `[HUB${region}${primaryFeatures}${address}] ${name}`;
+	}
 
-		let generatedTag = `[HUB${region}${primaryFeatures}${address}] ${name}`;
+	// compose selected resources
+	let secondaryFeatures = [
+		getSectionCheckboxes("resources").join(""),
+		getSectionCheckboxes("attractions").join(","),
+		getSectionCheckboxes("ships").join(","),
+	].filter((a) => a !== "");
 
-		// if there are any selected secondary feature tags append them
-		if(secondaryFeatures.length) generatedTag += " ("+secondaryFeatures.join(",")+")";
+	// if there are any selected secondary feature tags append them
+	if(secondaryFeatures.length) secondary = " ("+secondaryFeatures.join(",")+")";
 
-		// generate the new tag
-		document.querySelector("#generated-tag").innerHTML = generatedTag;
+	let generatedTag = primary+secondary;
+
+	// generate the new tag
+	document.querySelector("#generated-tag").innerHTML = generatedTag;
 }
