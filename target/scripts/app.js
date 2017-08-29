@@ -61,6 +61,11 @@ function getSectionCheckboxes(id) {
 	});
 }
 
+function getHostileSentinels() {
+	var el = document.getElementById("hostile-sentinels");
+	return el.checked ? el.value : "";
+}
+
 function updateTag() {
 	var mode = document.querySelector("body.system") ? "System" : document.querySelector("body.planet") ? "Planet" : "";
 
@@ -68,18 +73,24 @@ function updateTag() {
 	var primary = "",
 	    secondary = "";
 
-	if (mode === "System") {
-		var primaryFeatures = getPrimarySystemFeatures();
-		var address = getSolarIndex();
-		// extract region ID
-		var region = getRegion();
-		if (primaryFeatures) primaryFeatures = "-" + primaryFeatures;
-		if (address) address = "-" + address;
-		primary = "[HUB" + region + primaryFeatures + address + "] " + name;
+	switch (mode) {
+		case "System":
+			var primaryFeatures = getPrimarySystemFeatures();
+			var address = getSolarIndex();
+			// extract region ID
+			var region = getRegion();
+			if (primaryFeatures) primaryFeatures = "-" + primaryFeatures;
+			if (address) address = "-" + address;
+			primary = "[HUB" + region + primaryFeatures + address + "] " + name;
+			break;
+		case "Planet":
+			var sentinels = getHostileSentinels();
+			primary = sentinels ? sentinels + " " + name : name;
+			break;
 	}
 
 	// compose selected resources
-	var secondaryFeatures = [getSectionCheckboxes("resources").join(""), getSectionCheckboxes("attractions").join(","), getSectionCheckboxes("ships").join(",")].filter(function (a) {
+	var secondaryFeatures = [getSectionCheckboxes("hazards").join(""), getSectionCheckboxes("resources").join(""), getSectionCheckboxes("attractions").join(","), getSectionCheckboxes("ships").join(","), getSectionCheckboxes("features").join(","), getSectionCheckboxes("zoology").join(",")].filter(function (a) {
 		return a !== "";
 	});
 

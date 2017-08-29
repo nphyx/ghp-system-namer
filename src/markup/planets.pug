@@ -1,0 +1,53 @@
+extends layout
+include ./mixins
+append head
+  title Galactic Hub Project | Planet Tag Generator
+block content
+  body.planet
+    header
+      img(src="assets/logo-ghp.png")
+      h1 Planet Tag Generator
+      p Easily generate Galactic Hub compatible tags.
+    section#tag-container
+      h2#generated-tag
+    form
+      section#primary 
+        h2 Primary Information
+        hr
+        label(for="name") Name
+        input#name(type="text" name="name" placeholder="Un-named Planet")
+        div.group
+          input.primary(type="checkbox" id="hostile-sentinels" autocomplete="off" value="{!}")
+          label(for="hostile-sentinels") Hostile Sentinels
+      section#hazards
+        h2 Extreme Hazards
+        hr
+        +hazard("Heat",     "XHot", "hazard-heat.png")
+        +hazard("Cold",     "XIce", "hazard-cold.png")
+        +hazard("Toxicity", "XTox", "hazard-toxic.png")
+        +hazard("Radiation","XRad", "hazard-radioactive.png")
+      section#resources
+        h2 Notable Resources
+        hr
+        +resource("rare",   "Aquasphere",     "Aq", "resource-aquasphere.png") 
+        +resource("rare",   "Albumen Pearl",  "AP", "resource-albumenpearl.png") 
+        +resource("rare",   "Vortex Cube",    "VC", "resource-vortexcube.png")
+        +resource("rare",   "Gravitino Ball", "GB", "resource-gravitinoball.png")
+        +resource("exotic", "Radnox",         "Ra", "resource-radnox.png")
+        +resource("exotic", "Murrine",        "Mu", "resource-murrine.png")
+        +resource("exotic", "Omegon",         "Om", "resource-omegon.png")
+        +resource("exotic", "Calium",         "Ca", "resource-calium.png")
+      section#features.features
+        h2 Planet Features
+        hr
+        +attraction("Jacks",    "Jacks",    "attraction-jacks.jpg")
+        +attraction("Hexagons", "Hexagons", "attraction-hex.jpg")
+        +attraction("Shards",   "Shards",   "attraction-shards.jpg")
+        +attraction("Loops",    "Loops",    "attraction-loops.jpg")
+        +attraction("Bubbles",  "Bubbles",  "attraction-bubbles.jpg")
+      section#zoology.features
+        h2 Fauna
+        hr
+        +attraction("Diplos",     "Diplos",   "attraction-diplo.jpg")
+        +attraction("Megafauna",  "M.fauna",  "attraction-diplo.jpg")
+        +attraction("Butterflies","B.flies",  "attraction-diplo.jpg")

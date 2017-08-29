@@ -1,4 +1,4 @@
-mixin resource(rarity, fullName, shortName, imageUrl) 
+mixin resource(rarity, fullName, shortName, imageUrl)
   div(class="group "+rarity)
     input(type="checkbox" autocomplete="off" id=shortName value=shortName) 
     label.exotic(for=shortName)
@@ -7,8 +7,16 @@ mixin resource(rarity, fullName, shortName, imageUrl)
         img(src="assets/"+imageUrl alt=fullName)
         figcaption=shortName
 
-mixin attraction(name, tag, imageUrl) 
+mixin attraction(name, tag, imageUrl)
   div.group
+    input(type="checkbox" autocomplete="off" id=name value=tag) 
+    label(for=name)
+      figure
+        img(src="assets/"+imageUrl alt=name)
+        figcaption=name
+
+mixin hazard(name, tag, imageUrl)
+  div.group.hazard
     input(type="checkbox" autocomplete="off" id=name value=tag) 
     label(for=name)
       figure

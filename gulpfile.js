@@ -55,7 +55,7 @@ gulp.task("scripts", ["clean:scripts"], function() {
 });
 
 gulp.task("markup", ["clean:markup"], function() {
-	return gulp.src(["src/markup/index.pug"])
+	return gulp.src(["src/markup/index.pug","src/markup/planets.pug"])
 	.pipe(pug())
 	.pipe(gulp.dest("dist"))
 });

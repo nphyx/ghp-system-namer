@@ -3,6 +3,7 @@ CACHE MANIFEST
 
 CACHE:
 ./index.html
+./planets.html
 ./assets/atlas.gif
 ./assets/atlas.png
 ./assets/attraction-bubbles.jpg
@@ -23,6 +24,10 @@ CACHE:
 ./assets/geonms-font.svg
 ./assets/geonms-font.ttf
 ./assets/geonms-font.woff
+./assets/hazard-cold.png
+./assets/hazard-heat.png
+./assets/hazard-radioactive.png
+./assets/hazard-toxic.png
 ./assets/logo-ghp.png
 ./assets/primary-conflict.png
 ./assets/primary-econ.png
@@ -55,4 +60,4 @@ http://*
 SETTINGS:
 prefer-online
 
-# hash: 1b8690b0ae9943715b7db2ba252fab4bc51ef8e607336a2ebc4d985c6128c9dc
+# hash: 2b7fd4331ed4e5b7678cb21d9aefdc665484ff7df5c0fe225076fcd8add301cd

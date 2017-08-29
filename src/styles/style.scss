@@ -71,7 +71,7 @@ section {
 	}
 
 	&#primary {
-		.group label {border:0 none; border-radius:2em; background-color:$exotic;
+		.group:not(.hazard) label {border:0 none; border-radius:2em; background-color:$exotic;
 			font-size:1.3em; text-align:left; padding-left:2.7em; margin:0 auto;
 		}
 		#index {width:4em;}
@@ -81,17 +81,32 @@ section {
 		#wealthy + label::before {background-image:url("../assets/primary-econ.png");}
 		#exotic + label::before {background-image:url("../assets/primary-exotic.png");}
 		#conflict + label::before {background-image:url("../assets/primary-conflict.png");}
+		#hostile-sentinels + label::before {background-image:url("../assets/primary-conflict.png");}
 	}
 
 	&#resources {grid-template-columns:repeat(12, 1fr);
 		h1, h2, h3, h4, hr {grid-column:span 12;}
 	}
 
-	&#attractions, &#ships {
+	&.features {
 		.group label {border:none; padding:0;
 			figure {
 				img {margin:0 0 -3px 0;}
 				figcaption {bottom:.1rem; left:.1rem; text-shadow:0 .05em .05em rgba(0,0,0,0.5); text-transform:uppercase; font-size:3rem;}
+			}
+		}
+	}
+
+	&#hazards {grid-template-columns:repeat(8, 1fr);
+		h1, h2, h3, h4, hr {grid-column:span 8;}
+		.group.hazard {
+			label {border:0 none;
+				figure img {margin:0 0 -3px 0;}
+				figure figcaption {display:none}
+				&[for="Heat"] {background:rgb(174,15,43);}
+				&[for="Cold"] {background:rgb(63,137,186);}
+				&[for="Radiation"] {background:rgb(225,140,34);}
+				&[for="Toxicity"] {background:rgb(65,156,51);}
 			}
 		}
 	}
@@ -128,13 +143,13 @@ section {
 
 @media screen and (max-width:625px) {
 	section#resources .group label p {font-size:.8em;}
-	section#attractions, section#ships {grid-template-columns:repeat(4, 1fr);
+	section.features {grid-template-columns:repeat(4, 1fr);
 		h1, h2, h3, h4, hr {grid-column:span 4;}
 	}
 }
 
 @media screen and (max-width:575px) {
-	section#attractions, section#ships {
+	section.features {
 		.group label figure figcaption {font-size:2rem;}
 	}
 }
@@ -155,7 +170,7 @@ section {
 	section#resources {grid-template-columns:repeat(4, 1fr);
 		h1, h2, h3, h4, hr {grid-column:span 4;}
 	}
-	section#attractions, section#ships {grid-template-columns:repeat(2, 1fr);
+	section.features {grid-template-columns:repeat(2, 1fr);
 		h1, h2, h3, h4, hr {grid-column:span 2;}
 	}
 }

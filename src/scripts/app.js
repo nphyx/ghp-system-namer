@@ -60,6 +60,11 @@ function getSectionCheckboxes(id) {
 		.map((el) => el.value));
 }
 
+function getHostileSentinels() {
+	let el = document.getElementById("hostile-sentinels");
+	return el.checked?el.value:""
+}
+
 function updateTag() {
 	let mode = document.querySelector("body.system")?"System":
 		document.querySelector("body.planet")?"Planet":"";
@@ -67,21 +72,31 @@ function updateTag() {
 	let name = document.querySelector("input#name").value || "Un-Named "+ mode;
 	let primary = "", secondary = "";
 
-	if(mode === "System") {
-		let primaryFeatures = getPrimarySystemFeatures();
-		let address = getSolarIndex();
-		// extract region ID
-		let region = getRegion();
-		if(primaryFeatures) primaryFeatures = "-"+primaryFeatures;
-		if(address) address = "-"+address;
-		primary = `[HUB${region}${primaryFeatures}${address}] ${name}`;
+	switch(mode) {
+		case "System":
+			let primaryFeatures = getPrimarySystemFeatures();
+			let address = getSolarIndex();
+			// extract region ID
+			let region = getRegion();
+			if(primaryFeatures) primaryFeatures = "-"+primaryFeatures;
+			if(address) address = "-"+address;
+			primary = `[HUB${region}${primaryFeatures}${address}] ${name}`;
+		break;
+		case "Planet":
+			let sentinels = getHostileSentinels();
+			primary = sentinels?sentinels+" "+name:name;
+		break;
 	}
+	
 
 	// compose selected resources
 	let secondaryFeatures = [
+		getSectionCheckboxes("hazards").join(""),
 		getSectionCheckboxes("resources").join(""),
 		getSectionCheckboxes("attractions").join(","),
 		getSectionCheckboxes("ships").join(","),
+		getSectionCheckboxes("features").join(","),
+		getSectionCheckboxes("zoology").join(","),
 	].filter((a) => a !== "");
 
 	// if there are any selected secondary feature tags append them
