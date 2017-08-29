@@ -208,7 +208,7 @@ section {
       background-color: #007751; }
     section .group.exotic label {
       background-color: #71197f; }
-  section#primary .group label {
+  section#primary .group:not(.hazard) label {
     border: 0 none;
     border-radius: 2em;
     background-color: #71197f;
@@ -239,21 +239,41 @@ section {
     background-image: url("../assets/primary-exotic.png"); }
   section#primary #conflict + label::before {
     background-image: url("../assets/primary-conflict.png"); }
+  section#primary #hostile-sentinels + label::before {
+    background-image: url("../assets/primary-conflict.png"); }
   section#resources {
     grid-template-columns: repeat(12, 1fr); }
     section#resources h1, section#resources h2, section#resources h3, section#resources h4, section#resources hr {
       grid-column: span 12; }
-  section#attractions .group label, section#ships .group label {
+  section.features .group label {
     border: none;
     padding: 0; }
-    section#attractions .group label figure img, section#ships .group label figure img {
+    section.features .group label figure img {
       margin: 0 0 -3px 0; }
-    section#attractions .group label figure figcaption, section#ships .group label figure figcaption {
+    section.features .group label figure figcaption {
       bottom: .1rem;
       left: .1rem;
       text-shadow: 0 0.05em 0.05em rgba(0, 0, 0, 0.5);
       text-transform: uppercase;
       font-size: 3rem; }
+  section#hazards {
+    grid-template-columns: repeat(8, 1fr); }
+    section#hazards h1, section#hazards h2, section#hazards h3, section#hazards h4, section#hazards hr {
+      grid-column: span 8; }
+    section#hazards .group.hazard label {
+      border: 0 none; }
+      section#hazards .group.hazard label figure img {
+        margin: 0 0 -3px 0; }
+      section#hazards .group.hazard label figure figcaption {
+        display: none; }
+      section#hazards .group.hazard label[for="Heat"] {
+        background: #ae0f2b; }
+      section#hazards .group.hazard label[for="Cold"] {
+        background: #3f89ba; }
+      section#hazards .group.hazard label[for="Radiation"] {
+        background: #e18c22; }
+      section#hazards .group.hazard label[for="Toxicity"] {
+        background: #419c33; }
 
 @media screen and (max-width: 950px) {
   section#resources {
@@ -301,13 +321,13 @@ section {
 @media screen and (max-width: 625px) {
   section#resources .group label p {
     font-size: .8em; }
-  section#attractions, section#ships {
+  section.features {
     grid-template-columns: repeat(4, 1fr); }
-    section#attractions h1, section#attractions h2, section#attractions h3, section#attractions h4, section#attractions hr, section#ships h1, section#ships h2, section#ships h3, section#ships h4, section#ships hr {
+    section.features h1, section.features h2, section.features h3, section.features h4, section.features hr {
       grid-column: span 4; } }
 
 @media screen and (max-width: 575px) {
-  section#attractions .group label figure figcaption, section#ships .group label figure figcaption {
+  section.features .group label figure figcaption {
     font-size: 2rem; } }
 
 @media screen and (max-width: 550px) {
@@ -331,7 +351,7 @@ section {
     grid-template-columns: repeat(4, 1fr); }
     section#resources h1, section#resources h2, section#resources h3, section#resources h4, section#resources hr {
       grid-column: span 4; }
-  section#attractions, section#ships {
+  section.features {
     grid-template-columns: repeat(2, 1fr); }
-    section#attractions h1, section#attractions h2, section#attractions h3, section#attractions h4, section#attractions hr, section#ships h1, section#ships h2, section#ships h3, section#ships h4, section#ships hr {
+    section.features h1, section.features h2, section.features h3, section.features h4, section.features hr {
       grid-column: span 2; } }
