@@ -5,10 +5,14 @@ $rare: rgb(0,119,81);
 $exotic: rgb(113,25,127);
 
 html {font-size:16px;
-	@media (max-device-aspect-ratio: 3/4) {height: calc(100vw * 1.333);}
-	@media (max-device-aspect-ratio: 2/3) {height: calc(100vw * 1.5);}
-	@media (max-device-aspect-ratio: 10/16) {height: calc(100vw * 1.6);}
-	@media (max-device-aspect-ratio: 9/16) {height: calc(100vw * 1.778);}
+	@media (max-device-aspect-ratio: 3/4) and (orientation: portrait) {height: calc(100vw * 4/3);}
+	@media (max-device-aspect-ratio: 2/3) and (orientation: portrait) {height: calc(100vw * 3/2);}
+	@media (max-device-aspect-ratio: 10/16) and (orientation: portrait) {height: calc(100vw * 16/10);}
+	@media (max-device-aspect-ratio: 9/16) and (orientation: portrait) {height: calc(100vw * 16/9);}
+	@media (max-device-aspect-ratio: 3/4) and (orientation: landscape) {height: calc(100vw * 3/4);}
+	@media (max-device-aspect-ratio: 2/3) and (orientation: landscape) {height: calc(100vw * 2/3);}
+	@media (max-device-aspect-ratio: 10/16) and (orientation: landscape) {height: calc(100vw * 10/16);}
+	@media (max-device-aspect-ratio: 9/16) and (orientation: landscape) {height: calc(100vw * 9/16);}
 }
 body {
 	font-size:1em; color:white; font-family:Roboto, sans-serif; 
