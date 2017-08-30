@@ -4,7 +4,7 @@
 $rare: rgb(0,119,81);
 $exotic: rgb(113,25,127);
 
-html {font-size:16px;}
+html {font-size:16px; min-height:100%;}
 body {
 	font-size:1em; color:white; font-family:Roboto, sans-serif; 
 	max-width:60em; margin:0 auto;
