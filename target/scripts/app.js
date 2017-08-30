@@ -1,15 +1,20 @@
 "use strict";
 
-var backgroundCount = 7;
-var bgSrc = "assets/background-" + Math.floor(Math.random() * backgroundCount) + ".jpg";
-var loaded = 1;
+var loaded = 1,
+    mode = void 0,
+    backgroundCount = void 0,
+    bgSrc = void 0;
+
 window.addEventListener("load", function () {
 	var form = document.getElementsByTagName("form")[0];
 	form.addEventListener("change", updateTag);
 	form.addEventListener("keyup", updateTag);
+	mode = document.querySelector("body.system") ? "System" : document.querySelector("body.planet") ? "Planet" : "";
+	backgroundCount = 10;
+	bgSrc = "assets/bg-" + mode.toLowerCase() + "-" + Math.floor(Math.random() * backgroundCount) + ".jpg";
+
 	updateTag();
 	pinTag();
-
 	var imgLoadCb = function imgLoadCb() {
 		loaded--;
 		if (loaded === 0) setBackground();
@@ -67,7 +72,6 @@ function getHostileSentinels() {
 }
 
 function updateTag() {
-	var mode = document.querySelector("body.system") ? "System" : document.querySelector("body.planet") ? "Planet" : "";
 
 	var name = document.querySelector("input#name").value || "Un-Named " + mode;
 	var primary = "",

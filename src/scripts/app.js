@@ -1,14 +1,17 @@
 "use strict";
-let backgroundCount = 7;
-let bgSrc = "assets/background-"+(Math.floor(Math.random()*backgroundCount))+".jpg";
-let loaded = 1;
+let loaded = 1, mode, backgroundCount, bgSrc;
+
 window.addEventListener("load", function() {
 	let form = document.getElementsByTagName("form")[0];
 	form.addEventListener("change", updateTag);
 	form.addEventListener("keyup", updateTag);
+	mode = document.querySelector("body.system")?"System":
+		document.querySelector("body.planet")?"Planet":"";
+	backgroundCount = 10;
+	bgSrc = "assets/bg-"+(mode.toLowerCase())+"-"+(Math.floor(Math.random()*backgroundCount))+".jpg";
+
 	updateTag();
 	pinTag();
-
 	let imgLoadCb = () => {
 		loaded--;
 		if(loaded === 0) setBackground();
@@ -66,8 +69,6 @@ function getHostileSentinels() {
 }
 
 function updateTag() {
-	let mode = document.querySelector("body.system")?"System":
-		document.querySelector("body.planet")?"Planet":"";
 
 	let name = document.querySelector("input#name").value || "Un-Named "+ mode;
 	let primary = "", secondary = "";
