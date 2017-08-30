@@ -53,8 +53,19 @@ table {
   border-spacing: 0; }
 
 html {
-  font-size: 16px;
-  min-height: 100%; }
+  font-size: 16px; }
+  @media (max-device-aspect-ratio: 3 / 4) {
+    html {
+      height: calc(100vw * 1.333); } }
+  @media (max-device-aspect-ratio: 2 / 3) {
+    html {
+      height: calc(100vw * 1.5); } }
+  @media (max-device-aspect-ratio: 10 / 16) {
+    html {
+      height: calc(100vw * 1.6); } }
+  @media (max-device-aspect-ratio: 9 / 16) {
+    html {
+      height: calc(100vw * 1.778); } }
 
 body {
   font-size: 1em;
