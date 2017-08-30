@@ -20,6 +20,28 @@ CACHE:
 ./assets/background-4.jpg
 ./assets/background-5.jpg
 ./assets/background-6.jpg
+./assets/bg-planet-0.jpg
+./assets/bg-planet-1.jpg
+./assets/bg-planet-2.jpg
+./assets/bg-planet-3.jpg
+./assets/bg-planet-4.jpg
+./assets/bg-planet-5.jpg
+./assets/bg-planet-6.jpg
+./assets/bg-planet-7.jpg
+./assets/bg-planet-8.jpg
+./assets/bg-planet-9.jpg
+./assets/bg-system-0.jpg
+./assets/bg-system-1.jpg
+./assets/bg-system-2.jpg
+./assets/bg-system-3.jpg
+./assets/bg-system-4.jpg
+./assets/bg-system-5.jpg
+./assets/bg-system-6.jpg
+./assets/bg-system-7.jpg
+./assets/bg-system-8.jpg
+./assets/bg-system-9.jpg
+./assets/fauna-butterflies.jpg
+./assets/fauna-mega.jpg
 ./assets/geonms-font.eot
 ./assets/geonms-font.svg
 ./assets/geonms-font.ttf
@@ -60,4 +82,4 @@ http://*
 SETTINGS:
 prefer-online
 
-# hash: 2b7fd4331ed4e5b7678cb21d9aefdc665484ff7df5c0fe225076fcd8add301cd
+# hash: 06ff4c0ab268f4be071b2f5a1a85c3ce58e3b594392db2505421c94cb14f6a71
